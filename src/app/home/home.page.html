@@ -1,20 +1,88 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header [translucent]="true" >
+  <ion-toolbar color="primary">
     <ion-title>
-      Blank
+      Guardeño's Cleaning Schedule
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content class="content">
+  <div class="owners">
+    <app-owners ></app-owners>
   </div>
+  <ion-grid class="grid">
+    <ion-row class="grid__row">
+      <ion-col class="grid__row__col grid__row__col--title">
+        <ion-row class="day">
+          <ion-col class="day--title">
+            Monday
+          </ion-col>
+          <ion-col>
+            <app-task day='Monday'></app-task>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col class="grid__row__col grid__row__col--title">
+        <ion-row class="day">
+          <ion-col class="day--title">
+            Tuesday
+          </ion-col>
+          <ion-col>
+            <app-task day='Tuesday'></app-task>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col class="grid__row__col grid__row__col--title">
+        <ion-row class="day">
+          <ion-col class="day--title">
+            Wednesday
+          </ion-col>
+          <ion-col>
+            <app-task day='Wednesday'></app-task>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col class="grid__row__col grid__row__col--title">
+        <ion-row class="day">
+          <ion-col class="day--title">
+            Thursday
+          </ion-col>
+          <ion-col>
+            <app-task day='Thursday'></app-task>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col class="grid__row__col grid__row__col--title">
+        <ion-row class="day">
+          <ion-col class="day--title">
+            Friday
+          </ion-col>
+          <ion-col>
+            <app-task day='Friday'></app-task>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col class="grid__row__col grid__row__col--title">
+        <ion-row class="day">
+          <ion-col class="day--title">
+            Saturday
+          </ion-col>
+          <ion-col>
+            <app-task day='Saturday'></app-task>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col class="grid__row__col grid__row__col--title">
+        <ion-row class="day">
+          <ion-col class="day--title">
+            Sunday
+          </ion-col>
+          <ion-col>
+            <app-task day='Sunday'></app-task>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+

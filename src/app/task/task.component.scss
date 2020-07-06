@@ -1,0 +1,37 @@
+.task {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: greenyellow;
+    text-align: center;
+    vertical-align: center;
+    min-height: 80px;    
+    letter-spacing: 1px;
+    border-radius: 3px;
+    padding: 1px;
+
+    @media screen and (max-width: 500px) {
+        font-size: 8px;
+        min-height: 50px;
+        font-weight: 500;
+    }
+
+    &:not(:first-child) {
+        margin-top: 16px;
+    }
+}
+
+.rafa {
+    background-color: indianred;
+    color: whitesmoke;
+}
+
+.angel {
+    background-color:#DEB521;
+    font-weight: 600;
+}
+
+.papa {
+    font-weight: 600;
+    background-color: #33B0DE;
+}

@@ -1,3 +1,4 @@
+
 ion-title {
   text-align: center;
   font-weight: bolder;
@@ -8,11 +9,7 @@ ion-title {
 
 .grid {
   width: 100%;
-  padding: 32px 16px;
-
-  @media screen and (max-width: 600px) {
-    padding-top: 16px;
-  }
+  padding: 16px 16px;
 
   &__row {
     
@@ -20,6 +17,7 @@ ion-title {
     justify-content: center;
 
     &__col {
+      height: 100%;
       
     &--title {
       font-size: 12px;
@@ -58,4 +56,19 @@ ion-title {
 .owners {
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+
+  .owner {
+  }
+
+  .add {
+    position: relative;
+    
+    margin-left: 32px;
+  }
+}
+
+.today {
+  background-color: #4B8F2F !important;
 }

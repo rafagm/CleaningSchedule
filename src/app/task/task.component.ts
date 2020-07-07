@@ -24,14 +24,27 @@ export class TaskComponent implements OnInit {
   getTasksFromDay(day: string) {
     this.taskService.getTasksFromDay(this.day).subscribe(
       response => {
+        this.tasks = [];
+        
         for (const key in response) {
           if (response.hasOwnProperty(key)) {
-            const task: Task = response[key];
+            let task: Task = response[key];
+            task.id = key;
             this.tasks.push(task);
           }
         }
+        
       }
     );
+  }
+
+  onDelete(task: Task) {
+    this.taskService.deleteTask(task.id).subscribe(
+      result => {
+        this.getTasksFromDay(task.day);
+      }
+    );
+    
   }
 
 

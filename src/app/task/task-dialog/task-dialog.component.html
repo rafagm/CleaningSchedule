@@ -1,0 +1,44 @@
+<div class="dialog">
+  <div class="dialog__header">
+     Add Task
+  </div>
+  <div class="dialog__content">
+    <form
+    class="dialog__content__form"
+    [formGroup]="form"
+    (ngSubmit)="onAddTask()"
+    >
+    
+    <ion-item class="dialog__content__form__select">
+      <ion-label>Day of the week</ion-label>
+      <ion-select placeholder="Select One Day" formControlName="day">
+        <ion-select-option value="Monday">Monday</ion-select-option>
+        <ion-select-option value="Tuesday">Tuesday</ion-select-option>
+        <ion-select-option value="Wednesday">Wednesday</ion-select-option>
+        <ion-select-option value="Thursday">Thursday</ion-select-option>
+        <ion-select-option value="Friday">Friday</ion-select-option>
+        <ion-select-option value="Saturday">Saturday</ion-select-option>
+        <ion-select-option value="Sunday">Sunday</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    <ion-item class="dialog__content__form__select">
+      <ion-label position="floating" >Task Name</ion-label>
+      <ion-input formControlName="nameTask"></ion-input>
+    </ion-item>
+
+    <ion-item class="dialog__content__form__select">
+      <ion-label>Task Owner</ion-label>
+      <ion-select placeholder="Select One Person" formControlName="owner">
+        <ion-select-option value="Rafa">Rafa</ion-select-option>
+        <ion-select-option value="Angel">Angel</ion-select-option>
+        <ion-select-option value="Papa">Papa</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button type="submit" [disabled]="!form.valid" color="primary"> Add Task</ion-button>
+    
+  </form>
+  </div>
+
+</div>

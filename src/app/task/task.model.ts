@@ -1,5 +1,6 @@
 export interface Task {
     day: string,
     owner: string,
-    type: string
+    type: string,
+    id?: string
 }

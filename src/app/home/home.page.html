@@ -1,20 +1,22 @@
-<ion-header [translucent]="true" >
-  <ion-toolbar color="primary">
-    <ion-title>
-      Guardeño's Cleaning Schedule
-    </ion-title>
+<ion-header [translucent]="true" class="ion-no-border ion-padding-bottom">
+  <ion-toolbar >
+    <div class="owners">
+      <app-owners class="owner"></app-owners>
+      <div class="add">
+        <ion-button (click)="addTask()" >
+          <ion-icon slot="icon-only" name="add" ></ion-icon>
+        </ion-button>
+      </div>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="content">
-  <div class="owners">
-    <app-owners ></app-owners>
-  </div>
   <ion-grid class="grid">
     <ion-row class="grid__row">
       <ion-col class="grid__row__col grid__row__col--title">
         <ion-row class="day">
-          <ion-col class="day--title">
+          <ion-col class="day--title" [ngClass]="{'today' : today === 'Monday'}">
             Monday
           </ion-col>
           <ion-col>
@@ -22,9 +24,9 @@
           </ion-col>
         </ion-row>
       </ion-col>
-      <ion-col class="grid__row__col grid__row__col--title">
+      <ion-col class="grid__row__col grid__row__col--title ">
         <ion-row class="day">
-          <ion-col class="day--title">
+          <ion-col class="day--title" [ngClass]="{'today' : today === 'Tuesday'}">
             Tuesday
           </ion-col>
           <ion-col>
@@ -34,7 +36,7 @@
       </ion-col>
       <ion-col class="grid__row__col grid__row__col--title">
         <ion-row class="day">
-          <ion-col class="day--title">
+          <ion-col class="day--title" [ngClass]="{'today' : today === 'Wednesday'}">
             Wednesday
           </ion-col>
           <ion-col>
@@ -44,7 +46,7 @@
       </ion-col>
       <ion-col class="grid__row__col grid__row__col--title">
         <ion-row class="day">
-          <ion-col class="day--title">
+          <ion-col class="day--title" [ngClass]="{'today' : today === 'Thursday'}">
             Thursday
           </ion-col>
           <ion-col>
@@ -54,7 +56,7 @@
       </ion-col>
       <ion-col class="grid__row__col grid__row__col--title">
         <ion-row class="day">
-          <ion-col class="day--title">
+          <ion-col class="day--title" [ngClass]="{'today' : today === 'Friday'}">
             Friday
           </ion-col>
           <ion-col>
@@ -64,7 +66,7 @@
       </ion-col>
       <ion-col class="grid__row__col grid__row__col--title">
         <ion-row class="day">
-          <ion-col class="day--title">
+          <ion-col class="day--title" [ngClass]="{'today' : today === 'Saturday'}">
             Saturday
           </ion-col>
           <ion-col>
@@ -74,7 +76,7 @@
       </ion-col>
       <ion-col class="grid__row__col grid__row__col--title">
         <ion-row class="day">
-          <ion-col class="day--title">
+          <ion-col class="day--title" [ngClass]="{'today' : today === 'Sunday'}">
             Sunday
           </ion-col>
           <ion-col>

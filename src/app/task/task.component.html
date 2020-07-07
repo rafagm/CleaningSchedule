@@ -1,6 +1,7 @@
 <div
   class="task"
   *ngFor="let task of tasks"
-  [ngClass]="{'rafa': task.owner === 'Rafa', 'angel': task.owner === 'Angel', 'papa': task.owner === 'Papa'}">
+  [ngClass]="{'rafa': task.owner === 'Rafa', 'angel': task.owner === 'Angel', 'papa': task.owner === 'Papa'}"
+  (click)="onDelete(task)">
   {{ task.type  }}
 </div>

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TaskService } from '../task/task.service';
 import { ModalController } from '@ionic/angular';
 import { TaskDialogComponent } from '../task/task-dialog/task-dialog.component';
+import { ExportPdfService } from '../export/export-pdf.service';
 
 @Component({
   selector: 'app-home',
@@ -10,14 +11,16 @@ import { TaskDialogComponent } from '../task/task-dialog/task-dialog.component';
 })
 export class HomePage implements OnInit{
   today: string;
+  arrayBufferView;
+
 
   constructor(private taskService: TaskService,
-              private modalController: ModalController) {}
+              private modalController: ModalController,
+              private exportPdfService: ExportPdfService) {}
 
   
   ngOnInit(): void {
     this.getDayNameOfToday();
-    
   }
 
   getDayNameOfToday() {
@@ -36,6 +39,10 @@ export class HomePage implements OnInit{
     });
 
     return await modal.present();
+  }
+
+  onDownloadPdfSchedule() {
+    this.exportPdfService.openPdfOnNewWindows();
   }
 
 }

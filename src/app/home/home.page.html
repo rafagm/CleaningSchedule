@@ -11,8 +11,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="content">
-  <ion-grid class="grid">
+<ion-content class="content" >
+  <ion-grid class="grid" id="schedule">
     <ion-row class="grid__row">
       <ion-col class="grid__row__col grid__row__col--title">
         <ion-row class="day">
@@ -86,5 +86,10 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="onDownloadPdfSchedule()">
+      <ion-icon name="cloud-download-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
 

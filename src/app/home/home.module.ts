@@ -10,7 +10,6 @@ import { OwnersComponent } from '../owners/owners.component';
 import { TaskDialogComponent } from '../task/task-dialog/task-dialog.component';
 
 
-
 @NgModule({
   imports: [
     CommonModule,

@@ -108,7 +108,7 @@ export class TaskComponent implements OnInit {
     this.increaseSize = true
     this.taskHoveredId = task.id
   }
-  onMouseLeave(task) {
+  onMouseLeave() {
     this.delete ? this.increaseSize = true : this.increaseSize = false;
   }
   increaseSizeCheck(task: Task) {

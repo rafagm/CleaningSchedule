@@ -44,3 +44,11 @@
 .cdk-global-overlay-wrapper, .cdk-overlay-container {
     z-index: 99999 !important;
  }
+
+ .button {
+     &--dismiss {
+         position: absolute;
+         top: 2%;
+         right: 2%;
+     }
+ }

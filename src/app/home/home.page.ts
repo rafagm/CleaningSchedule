@@ -35,7 +35,8 @@ export class HomePage implements OnInit{
 
   async presentAddTaskPrompt() { 
     const modal = await this.modalController.create({
-      component: TaskDialogComponent
+      component: TaskDialogComponent,
+      swipeToClose: true
     });
 
     return await modal.present();

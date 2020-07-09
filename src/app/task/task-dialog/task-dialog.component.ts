@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TaskService } from '../task.service';
 import { Task } from '../task.model';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-task-dialog',
@@ -11,7 +12,8 @@ import { Task } from '../task.model';
 export class TaskDialogComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService,
+              private modalController: ModalController) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -43,9 +45,12 @@ export class TaskDialogComponent implements OnInit {
         window.location.reload();
       }
     );
+  }
 
-  
-    
+  onDismiss() {
+    this.modalController.dismiss({
+      'dismissed': true
+    })
   }
 
 }

@@ -113,10 +113,9 @@ export class ExportPdfService {
   openPdfOnNewWindows() {
     this.getTasksOfTheDay().subscribe(
       (response) => {                
-        this.setPdfContent(response);        
-        let win: Window = window.open('', '_blank');
+        this.setPdfContent(response);
 
-        pdfMake.createPdf(this.docDefinition).open({}, win);
+        pdfMake.createPdf(this.docDefinition).download();;
       }
     );
   }

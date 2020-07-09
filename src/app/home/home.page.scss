@@ -5,6 +5,7 @@ ion-title {
 }
 .content {
   height: fit-content;
+  overflow-y: auto;
 }
 .grid {
   width: 100%;

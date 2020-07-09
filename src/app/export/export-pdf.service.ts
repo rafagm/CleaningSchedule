@@ -24,12 +24,12 @@ export class ExportPdfService {
   }
 
   setPdfContent(tasks) {
-    
-    let tableBody = transpose(tasks);
-    tableBody.unshift(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]);
 
-    let header = "\nCleaning Schedule " + moment().startOf("week").locale("es").format("l") + "    -    " + moment().startOf("week").add(7, "days").locale("es").format("l");
-    
+    let tableBody = this.adjustTableBody(tasks);
+
+    let header = "Cleaning Schedule " + moment().startOf("week").locale("es").format("l") + "    -    " + moment().startOf("week").add(7, "days").locale("es").format("l");
+    let footer = "made by Rafael Guardeño";
+
     this.docDefinition = {
       info: {
         title: 'Cleaning Schedule',
@@ -37,10 +37,40 @@ export class ExportPdfService {
         subject: 'Cleaning Schedule',
         keywords: 'Cleaning Schedule',
       },
-      header: {text: header, fontSize: 16, alignment: "center", margin: [20]},
+      header: {text: header, fontSize: 16, bold: true, alignment: "center", margin: [0, 10, 0, 20]},
+      footer: {text: footer, alignment: "right", margin: [10, 0]},
       content: [
         {
-          layout: "lightHorizontalLines",
+          columns: [
+            { width: "*", text: ""},
+            {
+              width: "auto",
+              table: {
+                body: [
+                 [
+                    {
+                      text: "Rafa",
+                      fillColor: this.getColorFromOwner("Rafa")
+                    },
+                    {
+                      text: "Angel",
+                      fillColor: this.getColorFromOwner("Angel")
+                    },
+                    {
+                      text: "Papa",
+                      fillColor: this.getColorFromOwner("Papa")
+                    }
+                  ]
+                ]
+              },
+              margin: [0, 15],
+              layout: "noBorders"
+            },
+            { width: "*", text: ""}
+          ]
+          
+        },
+        {
           table: {
             headerRows: 1,
             widths: [ "*", "*", "*", "*", "*", "*", "*"],
@@ -50,6 +80,13 @@ export class ExportPdfService {
         }
       ]
     };
+  }
+
+  adjustTableBody(tasks) {  
+    let tableBody = transpose(tasks);
+    tableBody.unshift(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]);
+
+    return tableBody;
   }
 
   getTasksOfTheDay() {
@@ -63,7 +100,7 @@ export class ExportPdfService {
               const task: Task = response[key];
 
               if (!tasks[task.day]) tasks[task.day] = [];
-              tasks[task.day].push(task.type);
+              tasks[task.day].push(task);
             }
           }
           
@@ -76,8 +113,10 @@ export class ExportPdfService {
   openPdfOnNewWindows() {
     this.getTasksOfTheDay().subscribe(
       (response) => {                
-        this.setPdfContent(response);       
-        pdfMake.createPdf(this.docDefinition).open();
+        this.setPdfContent(response);        
+        let win: Window = window.open('', '_blank');
+
+        pdfMake.createPdf(this.docDefinition).open({}, win);
       }
     );
   }
@@ -86,20 +125,48 @@ export class ExportPdfService {
     let schedule = [];
     let taskCounter = new Array(7).fill(0);
 
+    console.log("tasks: ", tasks);
+    
+
     for (const day in tasks) {
       if (tasks.hasOwnProperty(day)) {
         const dayHash: number = this.dayHash(day);
-        const task = tasks[day];
+        const dayTasks = tasks[day];        
 
         if (!schedule[dayHash]) schedule[dayHash] = [];
 
-        schedule[dayHash] = task;
-        taskCounter[dayHash] = task.length;
+        schedule[dayHash] = this.getTasksFromDay(dayTasks);
+        taskCounter[dayHash] = dayTasks.length;
 
       }
     }
 
+    
+
     return this.formatSchedule(schedule, taskCounter);
+  }
+
+  getTasksFromDay(tasks) {
+    let dayTasks = [];
+    
+    for (const task of tasks){
+      dayTasks.push({
+        text: task.type,
+        fillColor: this.getColorFromOwner(task.owner)
+      });  
+    }
+
+    return dayTasks;
+  }
+
+  getColorFromOwner(owner: string) {
+    if (owner.toLowerCase() === "rafa")
+      return "#cd5c5c";
+    else if (owner.toLowerCase() === "angel")
+      return "#DEB521";
+    else if (owner.toLowerCase() === "papa")
+      return "#33B0DE";
+    else return "";
   }
 
   dayHash(day: string) {

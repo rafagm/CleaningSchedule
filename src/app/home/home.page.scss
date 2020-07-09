@@ -6,18 +6,15 @@ ion-title {
 .content {
   height: fit-content;
 }
-
 .grid {
   width: 100%;
-  padding: 16px 16px;
+  padding: 16px 16px;  
 
   &__row {
-    
     flex-wrap: nowrap;
     justify-content: center;
 
     &__col {
-      height: 100%;
       
     &--title {
       font-size: 12px;

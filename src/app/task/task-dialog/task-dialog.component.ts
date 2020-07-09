@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TaskService } from '../task.service';
 import { Task } from '../task.model';
@@ -7,8 +7,9 @@ import { ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-task-dialog',
   templateUrl: './task-dialog.component.html',
-  styleUrls: ['./task-dialog.component.scss'],
+  styleUrls: ['./task-dialog.component.scss']
 })
+
 export class TaskDialogComponent implements OnInit {
   form: FormGroup;
 

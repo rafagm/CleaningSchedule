@@ -2,11 +2,34 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TaskService } from './task.service';
 import { Task } from './task.model';
 import { AlertController } from '@ionic/angular';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from  "@angular/animations";
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss'],
+  animations: [
+    trigger("increaseSize", [
+      state('normal', style({
+        transform: "scale(1)"
+      })),
+      state("big", style({
+        transform: "scale(1.15)"
+      })),
+      transition("normal => big", [
+        animate(".2s")
+      ]),
+      transition("big => normal", [
+        animate(".1s")
+      ])
+    ])
+  ]
 })
 export class TaskComponent implements OnInit {
   @Input()
@@ -14,6 +37,9 @@ export class TaskComponent implements OnInit {
 
   tasks: Task[] = [];
   owners: string[] = ["Rafa", "Angel", "Papa"];
+
+  increaseSize = false;
+  delete = false;
 
   constructor(private taskService: TaskService,
               private alertController: AlertController) {
@@ -41,6 +67,7 @@ export class TaskComponent implements OnInit {
   }
 
   onDelete(task: Task) {
+    this.delete = true;
     this.presentAlert(task);
     
   }
@@ -55,13 +82,15 @@ export class TaskComponent implements OnInit {
           text: 'Cancel',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: (blah) => {;
+          handler: (blah) => {
+            this.delete = this.increaseSize = false;
           }
         }, {
           text: 'Okay',
           handler: () => {                  
             this.taskService.deleteTask(task.id).subscribe(
               result => {
+                this.delete = this.increaseSize = false;
                 this.getTasksFromDay(task.day);
               }
             );

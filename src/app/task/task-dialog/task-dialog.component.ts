@@ -33,18 +33,21 @@ export class TaskDialogComponent implements OnInit {
   }
 
   onAddTask() {
-    console.log(this.form);
-    const task: Task = {
-      day: this.form.get("day").value,
-      owner: this.form.get("owner").value,
-      type: this.form.get("nameTask").value
-    }
+    const days: string[] = this.form.get("day").value;
 
-    this.taskService.createTask(task).subscribe(
-      response => {
-        window.location.reload();
+    for (const day of days) {
+      const task: Task = {
+        day,
+        owner: this.form.get("owner").value,
+        type: this.form.get("nameTask").value
       }
-    );
+
+      this.taskService.createTask(task).subscribe(
+        response => {
+          window.location.reload();
+        }
+      );
+    }
   }
 
   onDismiss() {

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TaskService } from './task.service';
 import { Task } from './task.model';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-task',
@@ -14,7 +15,8 @@ export class TaskComponent implements OnInit {
   tasks: Task[] = [];
   owners: string[] = ["Rafa", "Angel", "Papa"];
 
-  constructor(private taskService: TaskService) {
+  constructor(private taskService: TaskService,
+              private alertController: AlertController) {
    }
    
   ngOnInit() {    
@@ -39,12 +41,36 @@ export class TaskComponent implements OnInit {
   }
 
   onDelete(task: Task) {
-    this.taskService.deleteTask(task.id).subscribe(
-      result => {
-        this.getTasksFromDay(task.day);
-      }
-    );
+    this.presentAlert(task);
     
+  }
+
+  async presentAlert(task) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Do you want to delete this task?',
+      message: `Day: <strong>${task.day}</strong><br>Task: <strong>${task.type}</strong>`,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {;
+          }
+        }, {
+          text: 'Okay',
+          handler: () => {                  
+            this.taskService.deleteTask(task.id).subscribe(
+              result => {
+                this.getTasksFromDay(task.day);
+              }
+            );
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 

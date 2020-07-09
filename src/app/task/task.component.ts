@@ -40,6 +40,7 @@ export class TaskComponent implements OnInit {
 
   increaseSize = false;
   delete = false;
+  taskHoveredId: string;
 
   constructor(private taskService: TaskService,
               private alertController: AlertController) {
@@ -90,7 +91,8 @@ export class TaskComponent implements OnInit {
           handler: () => {                  
             this.taskService.deleteTask(task.id).subscribe(
               result => {
-                this.delete = this.increaseSize = false;
+                this.delete = this.increaseSize = false;                
+                this.taskHoveredId = "";
                 this.getTasksFromDay(task.day);
               }
             );
@@ -100,6 +102,20 @@ export class TaskComponent implements OnInit {
     });
 
     await alert.present();
+  }
+
+  onMouseEnter(task) {
+    this.increaseSize = true
+    this.taskHoveredId = task.id
+  }
+  onMouseLeave(task) {
+    this.delete ? this.increaseSize = true : this.increaseSize = false;
+  }
+  increaseSizeCheck(task: Task) {
+    if (this.increaseSize && task.id === this.taskHoveredId)
+      return true;
+    else 
+    return false;
   }
 
 

@@ -2,34 +2,13 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TaskService } from './task.service';
 import { Task } from './task.model';
 import { AlertController } from '@ionic/angular';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition
-} from  "@angular/animations";
+import { increaseSize } from '../animations/animations';
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss'],
-  animations: [
-    trigger("increaseSize", [
-      state('normal', style({
-        transform: "scale(1)"
-      })),
-      state("big", style({
-        transform: "scale(1.15)"
-      })),
-      transition("normal => big", [
-        animate(".2s")
-      ]),
-      transition("big => normal", [
-        animate(".1s")
-      ])
-    ])
-  ]
+  animations: [increaseSize]
 })
 export class TaskComponent implements OnInit {
   @Input()

@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TaskService } from '../task.service';
 import { Task } from '../task.model';
@@ -12,6 +12,8 @@ import { ModalController } from '@ionic/angular';
 
 export class TaskDialogComponent implements OnInit {
   form: FormGroup;
+
+  @Input() days;
 
   constructor(private taskService: TaskService,
               private modalController: ModalController) { }
@@ -45,10 +47,23 @@ export class TaskDialogComponent implements OnInit {
 
       this.taskService.createTask(task).subscribe(
         response => {
-          window.location.reload();
+          const dayNumber: number = this.getDayNumber(task.day);
+          this.days[dayNumber].onAdd(task);
+          this.onDismiss();
         }
       );
     }
+  }
+
+  getDayNumber(day: string): number {
+    if (day.toLowerCase() === "monday") return 0;
+    else if (day.toLowerCase() === "tuesday") return 1;
+    else if (day.toLowerCase() === "wednesday") return 2;
+    else if (day.toLowerCase() === "thursday") return 3;
+    else if (day.toLowerCase() === "friday") return 4;
+    else if (day.toLowerCase() === "saturday") return 5;
+    else if (day.toLowerCase() === "sunday") return 6;
+    else return -1;
   }
 
   onDismiss() {

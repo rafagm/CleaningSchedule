@@ -13,6 +13,14 @@ export class HomePage implements OnInit{
   today: string;
   arrayBufferView;
 
+  @ViewChild("monday") monday;
+  @ViewChild("tuesday") tuesday;
+  @ViewChild("wednesday") wednesday;
+  @ViewChild("thursday") thursday;
+  @ViewChild("friday") friday;
+  @ViewChild("saturday") saturday;
+  @ViewChild("sunday") sunday;
+
 
   constructor(private taskService: TaskService,
               private modalController: ModalController,
@@ -36,6 +44,17 @@ export class HomePage implements OnInit{
   async presentAddTaskPrompt() { 
     const modal = await this.modalController.create({
       component: TaskDialogComponent,
+      componentProps: {
+        "days": [
+          this.monday,
+          this.tuesday,
+          this.wednesday,
+          this.thursday,
+          this.friday,
+          this.saturday,
+          this.sunday
+        ]
+      },
       swipeToClose: true
     });
 

@@ -46,6 +46,10 @@ export class TaskComponent implements OnInit {
     );
   }
 
+  onAdd(task: Task) {
+    this.tasks.push(task);
+  }
+  
   onDelete(task: Task) {
     this.delete = true;
     this.presentAlert(task);

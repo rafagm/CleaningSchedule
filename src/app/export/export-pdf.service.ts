@@ -26,7 +26,7 @@ export class ExportPdfService {
   setPdfContent(tasks) {
 
     let tableBody = this.adjustTableBody(tasks);
-
+    
     let header = "Cleaning Schedule " + moment().startOf("week").locale("es").format("l") + "    -    " + moment().startOf("week").add(7, "days").locale("es").format("l");
     let footer = "made by Rafael Guardeño";
 
@@ -122,10 +122,7 @@ export class ExportPdfService {
 
   makeTheSchedule(tasks) {
     let schedule = [];
-    let taskCounter = new Array(7).fill(0);
-
-    console.log("tasks: ", tasks);
-    
+    let taskCounter = new Array(7).fill(0);    
 
     for (const day in tasks) {
       if (tasks.hasOwnProperty(day)) {
@@ -181,12 +178,12 @@ export class ExportPdfService {
     else return -1;
   }
 
-  formatSchedule(schedule, taskCounter) {
+  formatSchedule(schedule, taskCounter) {    
     const maxNumberOfTaskPerDay = this.getMaxNumberOfTaskPerDay(taskCounter);
 
     let finalSchedule = [];
 
-    for (let i = 0; i < schedule.length; i++) {      
+    for (let i = 0; i < 7; i++) {      
       if (!schedule[i]) schedule[i] = [];
       if (!finalSchedule[i]) finalSchedule[i] = [];
 
@@ -196,7 +193,7 @@ export class ExportPdfService {
 
       finalSchedule[i] = this.fillTheRestOfTheSchedule(finalSchedule[i], maxNumberOfTaskPerDay);
     }
-
+    
     return finalSchedule;
 
   }

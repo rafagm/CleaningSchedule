@@ -42,6 +42,7 @@ export class TaskComponent implements OnInit {
           }
         }
         
+        this.sortTasksByDate();
       }
     );
   }
@@ -54,6 +55,19 @@ export class TaskComponent implements OnInit {
     this.delete = true;
     this.presentAlert(task);
     
+  }
+
+  sortTasksByDate() {
+    this.tasks.sort(this.compareTask);
+  }
+
+  private compareTask(a: Task, b: Task): number {
+    if (a.timestamp < b.timestamp)
+      return -1;
+    else if ( a.timestamp > b.timestamp)
+      return 1;
+    else 
+      return 0;
   }
 
   async presentAlert(task) {

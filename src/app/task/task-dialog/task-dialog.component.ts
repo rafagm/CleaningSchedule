@@ -42,7 +42,8 @@ export class TaskDialogComponent implements OnInit {
       const task: Task = {
         day,
         owner: this.form.get("owner").value,
-        type: this.form.get("nameTask").value
+        type: this.form.get("nameTask").value,
+        timestamp: new Date()
       }
 
       this.taskService.createTask(task).subscribe(

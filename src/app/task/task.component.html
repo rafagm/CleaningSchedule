@@ -5,6 +5,7 @@
   (click)="onDelete(task)"
   (mouseenter)="onMouseEnter(task)"
   (mouseleave)="onMouseLeave()"
+  @setAnimation
   [@increaseSize]="increaseSizeCheck(task) ? 'big' : 'normal'">
   {{ task.type  }}
 </div>

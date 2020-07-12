@@ -4,7 +4,9 @@ import {
     style,
     animate,
     transition,
-    sequence
+    sequence,
+    query,
+    stagger
   } from  "@angular/animations";
 
 export const increaseSize = 
@@ -25,4 +27,28 @@ export const increaseSize =
       transition("big => normal", [
         animate(".1s")
       ])
+    ]);
+
+export const setAnimation =
+  trigger("setAnimation", [
+    transition(":enter", [
+      style({
+        opacity: 0,
+        transform: "translateY(100px)"
+      }),      
+      animate(".5s cubic-bezier(0.13, 0, 0.25, 1)",
+        style({
+          opacity: 1,
+          transform: "none"
+        })
+      )]
+    ),
+    transition(":leave", [
+      animate(".3s cubic-bezier(0.13, 0, 0.25, 1)",
+      style({
+        opacity: 0,
+        height: "*",
+        transform: "scale(0)"
+      }))
+    ])
     ]);

@@ -1,14 +1,14 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { TaskService } from './task.service';
 import { Task } from './task.model';
 import { AlertController } from '@ionic/angular';
-import { increaseSize } from '../animations/animations';
+import { increaseSize, setAnimation } from '../animations/animations';
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss'],
-  animations: [increaseSize]
+  animations: [increaseSize, setAnimation]
 })
 export class TaskComponent implements OnInit {
   @Input()
@@ -90,7 +90,7 @@ export class TaskComponent implements OnInit {
               result => {
                 this.delete = this.increaseSize = false;                
                 this.taskHoveredId = "";
-                this.getTasksFromDay(task.day);
+                this.updateTasksOnDelete(task);
               }
             );
           }
@@ -113,6 +113,10 @@ export class TaskComponent implements OnInit {
       return true;
     else 
     return false;
+  }
+
+  updateTasksOnDelete(task: Task) {
+    this.tasks = this.tasks.filter(innerTask => task.id != innerTask.id);
   }
 
 

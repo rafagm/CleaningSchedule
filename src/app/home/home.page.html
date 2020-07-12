@@ -13,6 +13,11 @@
 
 <ion-content class="content" >
   <ion-grid class="grid" id="schedule">
+    <ion-row>
+      <ion-col class="grid__row__col--date">
+        {{ exportPdfService.startDate }} - {{ exportPdfService.endDate}}
+      </ion-col>
+    </ion-row>
     <ion-row class="grid__row">
       <ion-col class="grid__row__col grid__row__col--title">
         <ion-row class="day">

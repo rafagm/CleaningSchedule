@@ -24,7 +24,7 @@ export class HomePage implements OnInit{
 
   constructor(private taskService: TaskService,
               private modalController: ModalController,
-              private exportPdfService: ExportPdfService) {}
+              public exportPdfService: ExportPdfService) {}
 
   
   ngOnInit(): void {

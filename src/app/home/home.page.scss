@@ -16,6 +16,16 @@ ion-title {
     justify-content: center;
 
     &__col {
+      &--date {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        font-size: 1.3rem;
+        padding-bottom: 16px;
+        color: #4D4D4D;
+        font-weight: 600;
+        letter-spacing: 1.2px;
+      }
       
     &--title {
       font-size: 12px;

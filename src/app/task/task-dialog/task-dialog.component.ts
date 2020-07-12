@@ -49,7 +49,7 @@ export class TaskDialogComponent implements OnInit {
       this.taskService.createTask(task).subscribe(
         response => {
           const dayNumber: number = this.getDayNumber(task.day);
-          this.days[dayNumber].onAdd(task);
+          this.days[dayNumber].onAdd({...task, id: response["name"]});
           this.onDismiss();
         }
       );

@@ -81,7 +81,8 @@ export class TaskComponent implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            this.delete = this.increaseSize = false;
+            this.delete = this.increaseSize = false;                
+            this.taskHoveredId = "";
           }
         }, {
           text: 'Okay',
@@ -104,11 +105,14 @@ export class TaskComponent implements OnInit {
   onMouseEnter(task) {
     this.increaseSize = true
     this.taskHoveredId = task.id
+    console.log("onMouseEnter: ", this.taskHoveredId);
+    
   }
   onMouseLeave() {
     this.delete ? this.increaseSize = true : this.increaseSize = false;
   }
   increaseSizeCheck(task: Task) {
+    console.log("increasesSize: ", task);
     if (this.increaseSize && task.id === this.taskHoveredId)
       return true;
     else 
@@ -116,7 +120,7 @@ export class TaskComponent implements OnInit {
   }
 
   updateTasksOnDelete(task: Task) {
-    this.tasks = this.tasks.filter(innerTask => task.id != innerTask.id);
+    this.tasks = this.tasks.filter(innerTask => task.id !== innerTask.id);
   }
 
 

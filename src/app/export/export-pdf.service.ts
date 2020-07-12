@@ -19,6 +19,8 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs
 })
 export class ExportPdfService {
   docDefinition: any;
+  startDate: string = moment().startOf("week").locale("es").format("l");
+  endDate: string = moment().startOf("week").add(7, "days").locale("es").format("l")
 
   constructor(private taskService: TaskService) {
   }
@@ -27,7 +29,7 @@ export class ExportPdfService {
 
     let tableBody = this.adjustTableBody(tasks);
     
-    let header = "Cleaning Schedule " + moment().startOf("week").locale("es").format("l") + "    -    " + moment().startOf("week").add(7, "days").locale("es").format("l");
+    let header = "Cleaning Schedule " + this.startDate + "    -    " + this.endDate;
     let footer = "made by Rafael Guardeño";
 
     this.docDefinition = {
@@ -115,7 +117,7 @@ export class ExportPdfService {
       (response) => {                
         this.setPdfContent(response);
 
-        pdfMake.createPdf(this.docDefinition).download();;
+        pdfMake.createPdf(this.docDefinition).download(`cleaning_schedule_${this.startDate}_to_${this.endDate}`);
       }
     );
   }

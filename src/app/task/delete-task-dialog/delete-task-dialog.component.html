@@ -1,0 +1,19 @@
+<div class="delete-modal">
+  <div class="delete-modal__header">  
+    <ion-button class="button--dismiss" fill="clear" (click)="onDismiss()">
+      <ion-icon name="close-circle-outline"></ion-icon>
+    </ion-button>
+    <h2 class="delete-modal__header__title">Which days do you want to delete tasks from?</h2>
+  </div>
+  <div class="delete-modal__body">
+    <ion-list>
+      <ion-item *ngFor="let entry of form">
+        <ion-label>{{entry.day}}</ion-label>
+        <ion-checkbox slot="end" [(ngModel)]="entry.isChecked"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div class="delete-modal__footer">
+    <ion-button color="primary" (click)="onDelete()">Delete</ion-button>
+  </div>
+</div>

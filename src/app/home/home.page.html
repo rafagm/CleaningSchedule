@@ -1,9 +1,12 @@
 <ion-header [translucent]="true" class="ion-no-border ion-padding-bottom">
   <ion-toolbar >
     <div class="owners">
+      <ion-button fill="outline" class="button--delete" (click)="deleteTasks()">
+        <ion-icon slot="icon-only" name="trash-sharp"></ion-icon>
+      </ion-button>
       <app-owners class="owner"></app-owners>
       <div class="add">
-        <ion-button (click)="addTask()" >
+        <ion-button (click)="addTask()">
           <ion-icon slot="icon-only" name="add" ></ion-icon>
         </ion-button>
       </div>

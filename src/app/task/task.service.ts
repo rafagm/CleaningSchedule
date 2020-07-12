@@ -26,6 +26,8 @@ export class TaskService {
   }
 
   deleteTask(taskId: string){
+    console.log("Service deleteTask: ", taskId);
+    
     return this.http.delete(environment.firebaseDBURL + `tasks/${taskId}.json`);
   }
 

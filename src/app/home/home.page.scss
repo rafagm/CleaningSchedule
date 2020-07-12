@@ -80,3 +80,10 @@ ion-title {
 .today {
   background-color: #4B8F2F !important;
 }
+
+.button {
+  &--delete {
+    margin-right: 32px;
+  }
+}
+

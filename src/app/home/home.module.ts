@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { TaskComponent } from '../task/task.component';
 import { OwnersComponent } from '../owners/owners.component';
 import { TaskDialogComponent } from '../task/task-dialog/task-dialog.component';
+import { DeleteTaskDialogComponent } from '../task/delete-task-dialog/delete-task-dialog.component';
 
 
 @NgModule({
@@ -18,6 +19,6 @@ import { TaskDialogComponent } from '../task/task-dialog/task-dialog.component';
     HomePageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [HomePage, TaskComponent, OwnersComponent, TaskDialogComponent]
+  declarations: [HomePage, TaskComponent, OwnersComponent, TaskDialogComponent, DeleteTaskDialogComponent]
 })
 export class HomePageModule {}

@@ -3,6 +3,7 @@ import { TaskService } from '../task/task.service';
 import { ModalController } from '@ionic/angular';
 import { TaskDialogComponent } from '../task/task-dialog/task-dialog.component';
 import { ExportPdfService } from '../export/export-pdf.service';
+import { DeleteTaskDialogComponent } from '../task/delete-task-dialog/delete-task-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -63,6 +64,20 @@ export class HomePage implements OnInit{
 
   onDownloadPdfSchedule() {
     this.exportPdfService.openPdfOnNewWindows();
+  }
+
+  deleteTasks() {
+    this.presentDeleteTaskDialog();
+  }
+
+  async presentDeleteTaskDialog() {
+    const modal = await this.modalController.create({
+      component: DeleteTaskDialogComponent,
+      cssClass: "delete-task-modal",
+      swipeToClose: true
+    });
+
+    return await modal.present();
   }
 
 }
